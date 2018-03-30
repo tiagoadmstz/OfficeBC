@@ -5,9 +5,7 @@
  */
 package br.com.atenas.entidades;
 
-import br.com.atenas.interfaces.Veiculo;
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -29,7 +27,7 @@ import org.eclipse.persistence.annotations.Indexes;
 @Entity
 @Table(name = "carros")
 @Access(AccessType.PROPERTY)
-@SequenceGenerator(name = "seq_carro", sequenceName = "seq_carro", initialValue = 1, allocationSize = 1, schema = "root")
+@SequenceGenerator(name = "seq_car", sequenceName = "car_seq", initialValue = 1, allocationSize = 1, schema = "root")
 @Indexes({
     @Index(name = "idx_id", columnNames = {"id"}),
     @Index(name = "idx_placa", columnNames = {"placa"})
@@ -39,10 +37,17 @@ import org.eclipse.persistence.annotations.Indexes;
     @NamedQuery(name = "carros.findById", query = "SELECT car FROM Carro AS car WHERE car.id = :paramId"),
     @NamedQuery(name = "carros.findByPlaca", query = "SELECT car FROM Carro AS car WHERE car.placa = :paramPlaca")
 })
-public class Carro extends Veiculo implements Serializable {
+public class Carro implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Number id;
+    private String tipo;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private String cor;
+    
     public Carro() {
     }
 
@@ -56,7 +61,7 @@ public class Carro extends Veiculo implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_carro")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_seq")
     public Number getId() {
         return id;
     }
@@ -110,62 +115,13 @@ public class Carro extends Veiculo implements Serializable {
         this.cor = cor;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.tipo);
-        hash = 59 * hash + Objects.hashCode(this.placa);
-        hash = 59 * hash + Objects.hashCode(this.marca);
-        hash = 59 * hash + Objects.hashCode(this.modelo);
-        hash = 59 * hash + Objects.hashCode(this.cor);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Carro other = (Carro) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        if (!Objects.equals(this.placa, other.placa)) {
-            return false;
-        }
-        if (!Objects.equals(this.marca, other.marca)) {
-            return false;
-        }
-        if (!Objects.equals(this.modelo, other.modelo)) {
-            return false;
-        }
-        if (!Objects.equals(this.cor, other.cor)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Carro{" + "id=" + id + ", tipo=" + tipo + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", cor=" + cor + '}';
-    }
-
-    @Override
-    public void clonar(Veiculo veiculo) {
-        Carro car = (Carro) veiculo;
-        this.id = car.getId();
-        this.tipo = car.getTipo();
-        this.placa = car.getPlaca();
-        this.marca = car.getMarca();
-        this.modelo = car.getModelo();
-        this.cor = car.getCor();
+    public void clonar(Carro carro) {
+        this.id = carro.getId();
+        this.tipo = carro.getTipo();
+        this.placa = carro.getPlaca();
+        this.marca = carro.getMarca();
+        this.modelo = carro.getModelo();
+        this.cor = carro.getCor();
     }
 
 }
