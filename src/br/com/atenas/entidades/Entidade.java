@@ -47,7 +47,7 @@ public class Entidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Number id;
+    private Long id;
     private String nome;
     private String documento;
     private List<Telefone> telefones;
@@ -57,7 +57,7 @@ public class Entidade implements Serializable {
     public Entidade() {
     }
 
-    public Entidade(Number id, String nome, String documento, List<Telefone> telefones, List<Email> email, List<Carro> carros) {
+    public Entidade(Long id, String nome, String documento, List<Telefone> telefones, List<Email> email, List<Carro> carros) {
         this.id = id;
         this.nome = nome;
         this.documento = documento;
@@ -68,11 +68,11 @@ public class Entidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ent_seq")
-    public Number getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -130,4 +130,13 @@ public class Entidade implements Serializable {
         this.carros = entidade.getCarros();
     }
 
+    public void clear(){
+        this.id = null;
+        this.nome = null;
+        this.documento = null;
+        this.telefones = null;
+        this.email = null;
+        this.carros = null;
+    }
+    
 }

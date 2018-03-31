@@ -40,7 +40,7 @@ import org.eclipse.persistence.annotations.Indexes;
 })
 public class Telefone implements Serializable {
 
-    private Number id;
+    private Long id;
     private String tipo;
     private String telefone;
     private String contato;
@@ -48,7 +48,7 @@ public class Telefone implements Serializable {
     public Telefone() {
     }
 
-    public Telefone(Number id, String tipo, String telefone, String contato) {
+    public Telefone(Long id, String tipo, String telefone, String contato) {
         this.id = id;
         this.tipo = tipo;
         this.telefone = telefone;
@@ -57,11 +57,11 @@ public class Telefone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tel_seq")
-    public Number getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -50,7 +50,7 @@ import org.eclipse.persistence.annotations.Indexes;
 })
 public class NotaCliente implements Serializable {
 
-    private Number id;
+    private Long id;
     private LocalDate dataEmissao;
     private Entidade cliente;
     private List<Item> itens;
@@ -58,7 +58,7 @@ public class NotaCliente implements Serializable {
     public NotaCliente() {
     }
 
-    public NotaCliente(Number id, LocalDate dataEmissao, Entidade cliente, List<Item> itens) {
+    public NotaCliente(Long id, LocalDate dataEmissao, Entidade cliente, List<Item> itens) {
         this.id = id;
         this.dataEmissao = dataEmissao;
         this.cliente = cliente;
@@ -67,11 +67,11 @@ public class NotaCliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nota_seq")
-    public Number getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

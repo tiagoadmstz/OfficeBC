@@ -39,14 +39,14 @@ import org.eclipse.persistence.annotations.Indexes;
 })
 public class Email implements Serializable {
 
-    private Number id;
+    private Long id;
     private String email;
     private String contato;
 
     public Email() {
     }
 
-    public Email(Number id, String email, String contato) {
+    public Email(Long id, String email, String contato) {
         this.id = id;
         this.email = email;
         this.contato = contato;
@@ -54,11 +54,11 @@ public class Email implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "email_seq")
-    public Number getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -39,16 +39,16 @@ import org.eclipse.persistence.annotations.Indexes;
 })
 public class Item implements Serializable {
 
-    private Number id;
+    private Long id;
     private String descricao;
-    private Number quantidade;
+    private Double quantidade;
     private String unidade;
     private String valor;
 
     public Item() {
     }
 
-    public Item(Number id, String descricao, Number quantidade, String unidade, String valor) {
+    public Item(Long id, String descricao, Double quantidade, String unidade, String valor) {
         this.id = id;
         this.descricao = descricao;
         this.quantidade = quantidade;
@@ -58,11 +58,11 @@ public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
-    public Number getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,11 +76,11 @@ public class Item implements Serializable {
     }
 
     @Column(name = "quantidade")
-    public Number getQuantidade() {
+    public Double getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Number quantidade) {
+    public void setQuantidade(Double quantidade) {
         this.quantidade = quantidade;
     }
 

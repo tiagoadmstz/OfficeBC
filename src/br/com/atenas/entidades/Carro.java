@@ -41,7 +41,7 @@ public class Carro implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Number id;
+    private Long id;
     private String tipo;
     private String placa;
     private String marca;
@@ -51,7 +51,7 @@ public class Carro implements Serializable {
     public Carro() {
     }
 
-    public Carro(Number id, String tipo, String placa, String marca, String modelo, String cor) {
+    public Carro(Long id, String tipo, String placa, String marca, String modelo, String cor) {
         this.id = id;
         this.tipo = tipo;
         this.placa = placa;
@@ -62,11 +62,11 @@ public class Carro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_seq")
-    public Number getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Number id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
