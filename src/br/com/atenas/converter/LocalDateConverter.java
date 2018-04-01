@@ -16,16 +16,16 @@ import javax.persistence.Converter;
  * @author Tiago
  */
 @Converter(autoApply = true)
-public class LocalDateConverter implements AttributeConverter<String, LocalDate> {
+public class LocalDateConverter implements AttributeConverter<LocalDate, String> {
 
     @Override
-    public LocalDate convertToDatabaseColumn(String attribute) {
-        return !Objects.equals("", attribute) || !Objects.equals(null, attribute) ? LocalDate.parse(attribute, DateTimeFormatter.ofPattern("dd/MM/yyyy")) : null;
+    public String convertToDatabaseColumn(LocalDate attributte) {
+        return !Objects.equals(null, attributte) ? attributte.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
     }
 
     @Override
-    public String convertToEntityAttribute(LocalDate dbData) {
-        return !Objects.equals(null, dbData) ? dbData.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : null;
+    public LocalDate convertToEntityAttribute(String dbData) {
+        return !Objects.equals("", dbData) && !Objects.equals(null, dbData) ? LocalDate.parse(dbData, DateTimeFormatter.ofPattern("dd/MM/yyyy")) : null;
     }
 
 }

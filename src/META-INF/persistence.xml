@@ -7,6 +7,10 @@
     <class>br.com.atenas.entidades.Email</class>
     <class>br.com.atenas.entidades.Entidade</class>
     <class>br.com.atenas.entidades.Telefone</class>
+    <class>algoritimos.entidades.Usuario</class>
+    <class>br.com.atenas.entidades.Item</class>
+    <class>br.com.atenas.converter.LocalDateConverter</class>
+    <class>br.com.atenas.entidades.NotaCliente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OFFICEBC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -5,6 +5,8 @@
  */
 package br.com.atenas.main;
 
+import br.com.atenas.frames.LoginFrame;
+
 /**
  *
  * @author tiago.teixeira
@@ -16,6 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new LoginFrame().setVisible(true);
     }
     
 }

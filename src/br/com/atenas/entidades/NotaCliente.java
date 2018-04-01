@@ -45,8 +45,8 @@ import org.eclipse.persistence.annotations.Indexes;
 @NamedQueries(value = {
     @NamedQuery(name = "nota.findAll", query = "SELECT nota FROM NotaCliente AS nota"),
     @NamedQuery(name = "nota.findById", query = "SELECT nota FROM NotaCliente AS nota WHERE nota.id = :paramId"),
-    @NamedQuery(name = "nota.findByData", query = "SELECT nota FROM NotaCliente AS nota WHERE nota.dataEmissao = :paramData"),
-    @NamedQuery(name = "nota.findByData", query = "SELECT nota FROM NotaCliente AS nota WHERE nota.cliente = :paramCliente")
+    @NamedQuery(name = "nota.findByDataEmissao", query = "SELECT nota FROM NotaCliente AS nota WHERE nota.dataEmissao = :paramData"),
+    @NamedQuery(name = "nota.findByCliente", query = "SELECT nota FROM NotaCliente AS nota WHERE nota.cliente = :paramCliente")
 })
 public class NotaCliente implements Serializable {
 
@@ -75,8 +75,8 @@ public class NotaCliente implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "data")
     @Convert(attributeName = "dataEmissao", converter = LocalDateConverter.class)
+    @Column(name = "dataEmissao", columnDefinition = "varchar", length = 10)
     public LocalDate getDataEmissao() {
         return dataEmissao;
     }
@@ -109,6 +109,13 @@ public class NotaCliente implements Serializable {
         this.dataEmissao = nota.getDataEmissao();
         this.cliente = nota.getCliente();
         this.itens = nota.getItens();
+    }
+
+    public void clear() {
+        this.id = null;
+        this.dataEmissao = null;
+        this.cliente = null;
+        this.itens = null;
     }
 
 }
