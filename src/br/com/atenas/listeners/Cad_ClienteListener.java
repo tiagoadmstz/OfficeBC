@@ -8,10 +8,13 @@ package br.com.atenas.listeners;
 import algoritimos.dao.EntityManagerHelper;
 import algoritimos.frames.PesquisaDefaultForm;
 import algoritimos.listener.ListenerCBIAdapter;
+import algoritimos.util.OPERACAO;
+import br.com.atenas.entidades.Carro;
 import br.com.atenas.entidades.Email;
 import br.com.atenas.entidades.Entidade;
 import br.com.atenas.entidades.Telefone;
 import br.com.atenas.frames.Cad_ClienteFrame;
+import br.com.atenas.tablemodel.CarroTableModel;
 import br.com.atenas.tablemodel.ClientePesquisaTableModel;
 import br.com.atenas.tablemodel.EmailTableModel;
 import br.com.atenas.tablemodel.TelefoneTableModel;
@@ -35,6 +38,7 @@ public final class Cad_ClienteListener extends ListenerCBIAdapter {
     private final EntityManagerHelper emh = new EntityManagerHelper();
     private EmailTableModel modelEmail;
     private TelefoneTableModel modelTelefone;
+    private CarroTableModel modelCarro;
 
     public Cad_ClienteListener(Cad_ClienteFrame form) {
         this.form = form;
@@ -62,6 +66,10 @@ public final class Cad_ClienteListener extends ListenerCBIAdapter {
         form.getPainel_Emails().getBtAdicionar().addActionListener(this);
         form.getPainel_Emails().getBtRemover().setActionCommand("removerEmail");
         form.getPainel_Emails().getBtRemover().addActionListener(this);
+        form.getPainel_Carros().getBtAdicionar().setActionCommand("adicionarCarro");
+        form.getPainel_Carros().getBtAdicionar().addActionListener(this);
+        form.getPainel_Carros().getBtRemover().setActionCommand("removerCarro");
+        form.getPainel_Carros().getBtRemover().addActionListener(this);
     }
 
     @Override
@@ -98,20 +106,30 @@ public final class Cad_ClienteListener extends ListenerCBIAdapter {
                 modelTelefone.addObject(new Telefone());
                 break;
             case "removerTel":
-                if (form.getTbEmails().getSelectedRow() > -1) {
-                    JOptionPane.showMessageDialog(form, "Selecione um registro antes de tentar remove-lo", "Nenhum registro selecionado", JOptionPane.INFORMATION_MESSAGE);
-                } else {
+                if (form.getTbEmails().getSelectedRow() > 0) {
                     modelTelefone.removeObject(form.getTbTelefones().getSelectedRow());
+                } else {
+                    JOptionPane.showMessageDialog(form, "Selecione um registro antes de tentar remove-lo", "Nenhum registro selecionado", JOptionPane.INFORMATION_MESSAGE);
                 }
                 break;
             case "adicionarEmail":
                 modelEmail.addObject(new Email());
                 break;
             case "removerEmail":
-                if (form.getTbEmails().getSelectedRow() > -1) {
-                    JOptionPane.showMessageDialog(form, "Selecione um registro antes de tentar remove-lo", "Nenhum registro selecionado", JOptionPane.INFORMATION_MESSAGE);
+                if (form.getTbEmails().getSelectedRow() > 0) {
+                    modelEmail.removeObject(form.getTbEmails().getSelectedRow());
                 } else {
-                    modelTelefone.removeObject(form.getTbEmails().getSelectedRow());
+                    JOptionPane.showMessageDialog(form, "Selecione um registro antes de tentar remove-lo", "Nenhum registro selecionado", JOptionPane.INFORMATION_MESSAGE);
+                }
+                break;
+            case "adicionarCarro":
+                modelCarro.addObject(new Carro());
+                break;
+            case "removerCarro":
+                if (form.getTbCarros().getSelectedRow() > 0) {
+                    modelCarro.removeObject(form.getTbCarros().getSelectedRow());
+                } else {
+                    JOptionPane.showMessageDialog(form, "Selecione um registro antes de tentar remove-lo", "Nenhum registro selecionado", JOptionPane.INFORMATION_MESSAGE);
                 }
                 break;
         }
@@ -123,6 +141,7 @@ public final class Cad_ClienteListener extends ListenerCBIAdapter {
         paineis.add(form.getPainelMain());
         paineis.add(form.getPainel_Telefones());
         paineis.add(form.getPainel_Emails());
+        paineis.add(form.getPainel_Carros());
     }
 
     @Override
@@ -152,8 +171,15 @@ public final class Cad_ClienteListener extends ListenerCBIAdapter {
     public void addModel() {
         modelEmail = new EmailTableModel();
         modelTelefone = new TelefoneTableModel();
+        modelCarro = new CarroTableModel();
         form.getPainel_Emails().getTbDados().setModel(modelEmail);
         form.getPainel_Telefones().getTbDados().setModel(modelTelefone);
+        form.getPainel_Carros().getTbDados().setModel(modelCarro);
+    }
+
+    @Override
+    public void setEnableButtons(OPERACAO codFunction) {
+        setEnableButtons(codFunction, form.getMenuBarCbiDefault().getListMenuItens());
     }
 
 }

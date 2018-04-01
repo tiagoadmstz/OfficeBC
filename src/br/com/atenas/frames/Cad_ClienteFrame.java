@@ -63,12 +63,21 @@ public class Cad_ClienteFrame extends javax.swing.JFrame {
         return painel_Emails.getTbDados();
     }
 
+    @MapFrameField(referenceField = "carros", typeReference = List.class)
+    public JTable getTbCarros(){
+        return painel_Carros.getTbDados();
+    }
+    
     public Painel_Cad_Geral getPainel_Emails() {
         return painel_Emails;
     }
 
     public Painel_Cad_Geral getPainel_Telefones() {
         return painel_Telefones;
+    }
+
+    public Painel_Cad_Geral getPainel_Carros() {
+        return painel_Carros;
     }
 
     /**
@@ -91,6 +100,7 @@ public class Cad_ClienteFrame extends javax.swing.JFrame {
         tbGuias = new javax.swing.JTabbedPane();
         painel_Telefones = new br.com.atenas.frames.Painel_Cad_Geral();
         painel_Emails = new br.com.atenas.frames.Painel_Cad_Geral();
+        painel_Carros = new br.com.atenas.frames.Painel_Cad_Geral();
         menuBarCbiDefault = new algoritimos.paineis.MenuBarCbiDefault();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -113,6 +123,7 @@ public class Cad_ClienteFrame extends javax.swing.JFrame {
 
         tbGuias.addTab("Telefones", painel_Telefones);
         tbGuias.addTab("E-mails", painel_Emails);
+        tbGuias.addTab("Carros", painel_Carros);
 
         javax.swing.GroupLayout painelMainLayout = new javax.swing.GroupLayout(painelMain);
         painelMain.setLayout(painelMainLayout);
@@ -218,6 +229,7 @@ public class Cad_ClienteFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lbNome;
     private algoritimos.paineis.MenuBarCbiDefault menuBarCbiDefault;
     private javax.swing.JPanel painelMain;
+    private br.com.atenas.frames.Painel_Cad_Geral painel_Carros;
     private br.com.atenas.frames.Painel_Cad_Geral painel_Emails;
     private br.com.atenas.frames.Painel_Cad_Geral painel_Telefones;
     private javax.swing.JScrollPane scMain;

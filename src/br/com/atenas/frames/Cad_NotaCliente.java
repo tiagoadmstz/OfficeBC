@@ -5,17 +5,96 @@
  */
 package br.com.atenas.frames;
 
+import algoritimos.annotations.MapFrameField;
+import algoritimos.beans.JTextFieldCBI;
+import algoritimos.paineis.MenuBarCbiDefault;
+import br.com.atenas.listeners.Cad_NotaClienteListener;
+import java.time.LocalDate;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Tiago
  */
 public class Cad_NotaCliente extends javax.swing.JFrame {
 
+    private Cad_NotaClienteListener listener;
+
     /**
      * Creates new form Cad_NotaCliente
      */
     public Cad_NotaCliente() {
         initComponents();
+        listener = new Cad_NotaClienteListener(this);
+    }
+
+    public MenuBarCbiDefault getMenuBarCbiDefault() {
+        return menuBarCbiDefault;
+    }
+
+    public JPanel getPainel_Main() {
+        return painel_Main;
+    }
+
+    @MapFrameField(referenceField = "itens", typeReference = List.class)
+    public JTable getTbItens() {
+        return painel_Cad_Geral.getTbDados();
+    }
+
+    public JTextFieldCBI getTxtCor() {
+        return txtCor;
+    }
+
+    @MapFrameField(referenceField = "dataEmissao", typeReference = LocalDate.class)
+    public JTextFieldCBI getTxtDataEmissao() {
+        return txtDataEmissao;
+    }
+
+    @MapFrameField(referenceField = "documento", typeReference = String.class, subClassReference = "Entidade")
+    public JTextFieldCBI getTxtDocumento() {
+        return txtDocumento;
+    }
+
+    public JTextFieldCBI getTxtEmail() {
+        return txtEmail;
+    }
+
+    @MapFrameField(referenceField = "id", typeReference = Long.class)
+    public JTextField getTxtId() {
+        return txtId;
+    }
+
+    public JTextFieldCBI getTxtMarca() {
+        return txtMarca;
+    }
+
+    public JTextFieldCBI getTxtModelo() {
+        return txtModelo;
+    }
+
+    @MapFrameField(referenceField = "nome", typeReference = String.class, subClassReference = "Entidade")
+    public JTextFieldCBI getTxtNome() {
+        return txtNome;
+    }
+
+    public JTextFieldCBI getTxtPlaca() {
+        return txtPlaca;
+    }
+
+    @MapFrameField(referenceField = "telefone", typeReference = List.class, subClassReference = "Telefone", controlClassType = "Entidade")
+    public JTextFieldCBI getTxtTelefone() {
+        return txtTelefone;
+    }
+
+    public JTextFieldCBI getTxtTipo() {
+        return txtTipo;
+    }
+
+    public Painel_Cad_Geral getPainel_Cad_Geral() {
+        return painel_Cad_Geral;
     }
 
     /**
@@ -27,17 +106,221 @@ public class Cad_NotaCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        scMain = new javax.swing.JScrollPane();
+        painel_Main = new javax.swing.JPanel();
+        lbId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        lbDataEmissao = new javax.swing.JLabel();
+        txtDataEmissao = new algoritimos.beans.JTextFieldCBI();
+        separdor1 = new javax.swing.JSeparator();
+        lbDocumento = new javax.swing.JLabel();
+        txtDocumento = new algoritimos.beans.JTextFieldCBI();
+        lbNome = new javax.swing.JLabel();
+        txtNome = new algoritimos.beans.JTextFieldCBI();
+        lbTelefone = new javax.swing.JLabel();
+        txtTelefone = new algoritimos.beans.JTextFieldCBI();
+        lbEmail = new javax.swing.JLabel();
+        txtEmail = new algoritimos.beans.JTextFieldCBI();
+        separador2 = new javax.swing.JSeparator();
+        lbPlaca = new javax.swing.JLabel();
+        txtPlaca = new algoritimos.beans.JTextFieldCBI();
+        lbMarca = new javax.swing.JLabel();
+        txtMarca = new algoritimos.beans.JTextFieldCBI();
+        lbModelo = new javax.swing.JLabel();
+        txtModelo = new algoritimos.beans.JTextFieldCBI();
+        lbTipo = new javax.swing.JLabel();
+        txtTipo = new algoritimos.beans.JTextFieldCBI();
+        lbCor = new javax.swing.JLabel();
+        txtCor = new algoritimos.beans.JTextFieldCBI();
+        tbGuias = new javax.swing.JTabbedPane();
+        painel_Cad_Geral = new br.com.atenas.frames.Painel_Cad_Geral();
+        menuBarCbiDefault = new algoritimos.paineis.MenuBarCbiDefault();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Emissão de Notas");
+
+        lbId.setText("Id");
+
+        txtId.setEditable(false);
+
+        lbDataEmissao.setText("Data de Emissão");
+
+        txtDataEmissao.setMaxLength(10);
+        txtDataEmissao.setName("data"); // NOI18N
+
+        lbDocumento.setText("Documento");
+        lbDocumento.setPreferredSize(new java.awt.Dimension(79, 14));
+
+        txtDocumento.setMaxLength(50);
+
+        lbNome.setText("Nome");
+        lbNome.setPreferredSize(new java.awt.Dimension(79, 14));
+
+        txtNome.setMaxLength(255);
+
+        lbTelefone.setText("Telefone");
+        lbTelefone.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtTelefone.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        lbEmail.setText("E-mail");
+        lbEmail.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtEmail.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        lbPlaca.setText("Placa");
+        lbPlaca.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtPlaca.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        lbMarca.setText("Marca");
+        lbMarca.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtMarca.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        lbModelo.setText("Modelo");
+        lbModelo.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtModelo.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        lbTipo.setText("Tipo");
+        lbTipo.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtTipo.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        lbCor.setText("Cor");
+        lbCor.setPreferredSize(new java.awt.Dimension(78, 14));
+
+        txtCor.setPreferredSize(new java.awt.Dimension(210, 20));
+
+        tbGuias.addTab("Produtos e Serviços", painel_Cad_Geral);
+
+        javax.swing.GroupLayout painel_MainLayout = new javax.swing.GroupLayout(painel_Main);
+        painel_Main.setLayout(painel_MainLayout);
+        painel_MainLayout.setHorizontalGroup(
+            painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_MainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(separador2)
+                    .addGroup(painel_MainLayout.createSequentialGroup()
+                        .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(separdor1)
+                                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painel_MainLayout.createSequentialGroup()
+                                        .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbDataEmissao)
+                                            .addComponent(lbId))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDataEmissao, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                            .addComponent(txtId)))
+                                    .addGroup(painel_MainLayout.createSequentialGroup()
+                                        .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(lbTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lbDocumento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lbNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(painel_MainLayout.createSequentialGroup()
+                                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(painel_MainLayout.createSequentialGroup()
+                                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painel_MainLayout.createSequentialGroup()
+                                        .addComponent(lbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(painel_MainLayout.createSequentialGroup()
+                                        .addComponent(lbCor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 9, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(tbGuias)
+        );
+        painel_MainLayout.setVerticalGroup(
+            painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_MainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbId)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbDataEmissao)
+                    .addComponent(txtDataEmissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separdor1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(separador2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(tbGuias))
+        );
+
+        scMain.setViewportView(painel_Main);
+
+        setJMenuBar(menuBarCbiDefault);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -54,7 +337,7 @@ public class Cad_NotaCliente extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -79,5 +362,34 @@ public class Cad_NotaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lbCor;
+    private javax.swing.JLabel lbDataEmissao;
+    private javax.swing.JLabel lbDocumento;
+    private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbId;
+    private javax.swing.JLabel lbMarca;
+    private javax.swing.JLabel lbModelo;
+    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbPlaca;
+    private javax.swing.JLabel lbTelefone;
+    private javax.swing.JLabel lbTipo;
+    private algoritimos.paineis.MenuBarCbiDefault menuBarCbiDefault;
+    private br.com.atenas.frames.Painel_Cad_Geral painel_Cad_Geral;
+    private javax.swing.JPanel painel_Main;
+    private javax.swing.JScrollPane scMain;
+    private javax.swing.JSeparator separador2;
+    private javax.swing.JSeparator separdor1;
+    private javax.swing.JTabbedPane tbGuias;
+    private algoritimos.beans.JTextFieldCBI txtCor;
+    private algoritimos.beans.JTextFieldCBI txtDataEmissao;
+    private algoritimos.beans.JTextFieldCBI txtDocumento;
+    private algoritimos.beans.JTextFieldCBI txtEmail;
+    private javax.swing.JTextField txtId;
+    private algoritimos.beans.JTextFieldCBI txtMarca;
+    private algoritimos.beans.JTextFieldCBI txtModelo;
+    private algoritimos.beans.JTextFieldCBI txtNome;
+    private algoritimos.beans.JTextFieldCBI txtPlaca;
+    private algoritimos.beans.JTextFieldCBI txtTelefone;
+    private algoritimos.beans.JTextFieldCBI txtTipo;
     // End of variables declaration//GEN-END:variables
 }

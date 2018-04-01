@@ -157,6 +157,15 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="br.com.atenas.frames.Painel_Cad_Geral" name="painel_Carros">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Carros">
+                        <Property name="tabTitle" type="java.lang.String" value="Carros"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
